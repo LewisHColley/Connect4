@@ -4,13 +4,12 @@ import java.util.Scanner;
 public class Connect4Application {
     Scanner in = new Scanner(System.in);
     public Connect4Application() {
-        new Game();
+        new Game(this);
     }
 
     public int getInput() {
         System.out.println("Enter column to place counter");
         return in.nextInt();
-
     }
 
     public void displayBoard(String[][] board) {

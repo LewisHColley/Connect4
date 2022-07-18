@@ -7,7 +7,8 @@ public class Game {
 
     private final int CHECK = 4;
 
-    public Game() {
+    public Game(Connect4Application application) {
+        this.application = application;
         setupGame();
     }
 
