@@ -1,8 +1,38 @@
 import java.util.Arrays;
 
-public class GameUtil {
-    private static final int CHECK = 4;
-    public static Point calculatePointFromColumn(String[][] board, int column) {
+public class Game {
+    Board board;
+    Counter currentCounter;
+    Connect4Application application;
+
+    private final int CHECK = 4;
+
+    public Game() {
+        setupGame();
+    }
+
+    private void setupGame() {
+        board = initBoard();
+        currentCounter = Counter.RED;
+        run();
+    }
+
+    private void run() {
+        int column;
+        Point point;
+        while (true) {
+            application.displayBoard(board.getBoard());
+            column = application.getInput();
+            point = calculatePointFromColumn(board.getTransposedBoard(), column);
+            board.setCell(currentCounter.toString(), point);
+            if(checkGameWonForCurrentCounter(board.getBoard(), currentCounter))
+                break;
+            currentCounter = switchCounter(currentCounter);
+        }
+        System.out.println(currentCounter + " wins!");
+    }
+
+    private Point calculatePointFromColumn(String[][] board, int column) {
         int counter = 0;
         while(counter < board[column].length) {
             if (!board[column][counter].equals(Counter.EMPTY.toString()))
@@ -12,21 +42,23 @@ public class GameUtil {
         return new Point(column, counter - 1);
     }
 
-    public static void initBoard(Board board) {
+    private Board initBoard() {
+        board = new Board();
         for (int y = 0; y < board.getHEIGHT(); y++) {
             for (int x = 0; x < board.getWIDTH(); x++) {
                 board.setCell(Counter.EMPTY.toString(),new Point(x,y));
             }
         }
+        return board;
     }
 
-    public static Counter switchCounter(Counter currentCounter) {
+    private Counter switchCounter(Counter currentCounter) {
         if (currentCounter.equals(Counter.RED))
             return Counter.YELLOW;
         else return Counter.RED;
     }
 
-    public static Boolean checkGameWonForCurrentCounter(String[][] board, Counter currentCounter) {
+    private Boolean checkGameWonForCurrentCounter(String[][] board, Counter currentCounter) {
         //check right
         //check down
         //check diagonal up
@@ -61,7 +93,7 @@ public class GameUtil {
         return false;
     }
 
-    private static String[] initWinCondition(Counter currentCounter) {
+    private String[] initWinCondition(Counter currentCounter) {
         String[] winCondition = new String[CHECK];
         for (int i = 0; i < 4; i++) {
             winCondition[i] = currentCounter.toString();
