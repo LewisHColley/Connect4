@@ -4,7 +4,7 @@ import java.util.Scanner;
 public class Connect4Application {
     Scanner in = new Scanner(System.in);
     public Connect4Application() {
-        Game game = new Game();
+        new Game();
     }
 
     public int getInput() {
