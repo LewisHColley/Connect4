@@ -14,7 +14,7 @@ public class Board {
     }
 
     public String getCell(Point p) {
-        return board[p.getX()][p.getY()];
+        return board[p.getY()][p.getX()];
     }
 
     public int getWIDTH() {
