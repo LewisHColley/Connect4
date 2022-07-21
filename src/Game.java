@@ -1,9 +1,10 @@
 import java.util.Arrays;
 
 public class Game {
-    Board board;
-    Counter currentCounter;
-    Connect4Application application;
+
+    private Board board;
+    private Counter currentCounter;
+    private final Connect4Application application;
 
     private final int CHECK = 4;
 
@@ -44,7 +45,9 @@ public class Game {
     }
 
     private Board initBoard() {
-        board = new Board();
+        int BOARD_HEIGHT = 6;
+        int BOARD_WIDTH = 7;
+        board = new Board(BOARD_HEIGHT, BOARD_WIDTH);
         for (int y = 0; y < board.getHEIGHT(); y++) {
             for (int x = 0; x < board.getWIDTH(); x++) {
                 board.setCell(Counter.EMPTY.toString(),new Point(x,y));

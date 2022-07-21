@@ -8,7 +8,7 @@ public class Connect4Application {
     }
 
     public int getInput() {
-        System.out.println("Enter column to place counter");
+        System.out.println("Enter column (0-6) to place counter");
         return in.nextInt();
     }
 

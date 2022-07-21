@@ -1,12 +1,11 @@
-/**
- * Could be made as an array of stacks but is generic to showcase its possible application for other games
- */
 public class Board {
     private final String[][] board;
-    private final int HEIGHT = 6;
-    private final int WIDTH = 7;
+    private final int HEIGHT;
+    private final int WIDTH;
 
-    public Board(){
+    public Board(int height, int width){
+        HEIGHT = height;
+        WIDTH = width;
         board = new String[HEIGHT][WIDTH];
     }
 
